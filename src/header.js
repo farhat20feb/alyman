@@ -2,15 +2,17 @@ import React from 'react';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import SearchIcon from '@material-ui/icons/Search';
 import { List,Modal, Button,Divider,Menu,Row, Col  } from 'antd';
-import TextField from '@material-ui/core/TextField';
 import { FacebookOutlined,GoogleOutlined } from '@ant-design/icons';
 import FormControl from '@material-ui/core/FormControl';
-import Content from './content';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-
+import { connect } from 'react-redux';
+import Badge from '@material-ui/core/Badge'
+import { getNumbers } from './actions/getActions'
+import { Link } from "react-router-dom";
 
 const { SubMenu } = Menu;
+
 
 let styles = {
 	headerTop : {
@@ -40,7 +42,7 @@ class Header extends React.Component {
 		});
 	  };
 
-	  handleOk = e => {
+	  handlelogin = e => {
 		console.log(e);
 		this.setState({
 		  visible: false,
@@ -55,12 +57,16 @@ class Header extends React.Component {
 	  };
 
   render() {
-	const { visible, loading } = this.state;
+
+	console.log(this.props.basketProps);
+	
+	const {  loading } = this.state;
      return (
+		
         <div className="App">
 			
 			 <Row style={styles.headerTop}>
-      				<Col span={4} offset = {2} style={styles.headerTop}><h1 >Logo</h1></Col>
+      				<Col span={4} offset = {2} style={styles.headerTop}><h5 >Logo</h5></Col>
 					  <Col span ={9}>
 						<Menu mode="horizontal">
 						<SubMenu
@@ -122,104 +128,34 @@ class Header extends React.Component {
         					</Menu.Item>
 						</Menu>
 					 </Col> 
-					<Col span={3} offset = {3}><h4 style={styles.loginLink} onClick={this.showModal}><a href="#login">Login/Register</a></h4></Col>
-					<Col style={styles.iconleft} span={1}><ShoppingCartIcon fontSize="large"/></Col>
+					<Col span={3} offset = {3}><h6 style={styles.loginLink} onClick={this.showModal}><a href="#login">Login/Register</a></h6></Col>
+						<Col style={styles.iconleft} span={1}>
+							<Link to = "/cart">
+						<Badge badgeContent={this.props.basketProps.basketNumbers} color="primary">
+  						<ShoppingCartIcon fontSize="large"/>
+						</Badge>
+						</Link>
+					</Col>
 					<Col style={styles.iconleft} span={1}><SearchIcon fontSize="large"/></Col>
-    		</Row>
-				<Content />
-				<Row  style={{backgroundColor:'#000',padding:'20px',marginTop:'20px'}}>
-				<Col span={5} offset = {1}>
-				<h3 style={{color:'#fff'}}>CUSTOMER SERVICE</h3>
-				<List>
-      <List.Item>
-       <span style = {{color:'#fff'}}> Title 1</span>
-      </List.Item>	
-	  <List.Item>
-	  <span style = {{color:'#fff'}}> Title 2</span>
-      </List.Item>
-	  <List.Item>
-	  <span style = {{color:'#fff'}}> Title 3</span>
-      </List.Item>
-	  <List.Item>
-	  <span style = {{color:'#fff'}}> Title 4</span>
-      </List.Item>
-	  </List>
-				</Col>
-				<Col span={5} offset = {1}>
-				<h3 style={{color:'#fff'}}>COMPANY</h3>	
-				<List>
-
-			
-   
-      <List.Item>
-       <span style = {{color:'#fff'}}> Title 1</span>
-      </List.Item>	
-	  <List.Item>
-	  <span style = {{color:'#fff'}}> Title 2</span>
-      </List.Item>
-	  <List.Item>
-	  <span style = {{color:'#fff'}}> Title 3</span>
-      </List.Item>
-	  <List.Item>
-	  <span style = {{color:'#fff'}}> Title 4</span>
-      </List.Item>
-	  </List>
-				</Col>
-				<Col span={5} offset = {1}>
-				<h3 style={{color:'#fff'}}>CONNECT WITH US</h3>	
-				<List>
-      <List.Item>
-       <span style = {{color:'#fff'}}> Title 1</span>
-      </List.Item>	
-	  <List.Item>
-	  <span style = {{color:'#fff'}}> Title 2</span>
-      </List.Item>
-	  <List.Item>
-	  <span style = {{color:'#fff'}}> Title 3</span>
-      </List.Item>
-	  <List.Item>
-	  <span style = {{color:'#fff'}}> Title 4</span>
-      </List.Item>
-	  </List>
-				</Col>
-				<Col span={5} offset = {1}>
-				<h3 style={{color:'#fff'}}>KEEP UP TO DATE</h3>	
-				<List>
-
-			
-   
-      <List.Item>
-       <span style = {{color:'#fff'}}> Title 1</span>
-      </List.Item>	
-	  <List.Item>
-	  <span style = {{color:'#fff'}}> Title 2</span>
-      </List.Item>
-	  <List.Item>
-	  <span style = {{color:'#fff'}}> Title 3</span>
-      </List.Item>
-	  <List.Item>
-	  <span style = {{color:'#fff'}}> Title 4</span>
-      </List.Item>
-	  </List>
-				</Col>
-				</Row>
+    			</Row>
+				 
 				<Modal
           
           visible={this.state.visible}
-          onOk={this.handleOk}
+          onOk={this.handlelogin}
 		  onCancel={this.handleCancel}
 		  footer={[
             <Button key="back" onClick={this.handleCancel}>
               Cancel
             </Button>,
-            <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
+            <Button key="submit" type="primary" loading={loading} onClick={this.handlelogin}>
               Submit
             </Button>
           ]}
         >
 			<center><h3>Log In</h3></center>
 			<center><h3>Discover Fashion!</h3></center>
-			<center><h8>You are just one step away from signing up</h8></center>
+			<center><h6>You are just one step away from signing up</h6></center>
 			<br/>
 			<Row>
 			<Col span={8} offset = {4}>
@@ -230,7 +166,7 @@ class Header extends React.Component {
 			</Col>
 			</Row>
 			<Divider orientation="center" style={{ color: '#333', fontWeight: 'bold',marginTop:'20px' }}>
-     			<h7> Or </h7>
+     			<h5> Or </h5>
    			</Divider>	
            <form noValidate autoComplete="off">
 			   <Row>
@@ -251,6 +187,7 @@ class Header extends React.Component {
   }
 } 
 
-
-
-export default Header;
+const mapStateToProps = state => ({
+	basketProps : state.basketState
+})
+export default connect(mapStateToProps, { getNumbers })(Header); 

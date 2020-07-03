@@ -2,9 +2,9 @@ import React from 'react';
 import Men1 from './assets/men-1.jpg'
 import Men2 from './assets/men-2.jpg'
 import { Card,Carousel,Divider,Row, Col } from 'antd';
+import ProductList from './products';
 
 
-const { Meta } = Card;
 
 let styles = {
 	root: {
@@ -15,6 +15,7 @@ let styles = {
 
 class Content extends React.Component {
     render() {
+		
        return (
           <div>
             <Row>
@@ -37,7 +38,7 @@ class Content extends React.Component {
 			</Row>	
 
 			<Divider orientation="center" style={{ color: '#333', fontWeight: 'bold',marginTop:'50px' }}>
-     			<h1> Design of the day - Men </h1>
+     			<h4> Design of the day - Men </h4>
    			</Divider>
 			
 			   <Row>
@@ -49,7 +50,7 @@ class Content extends React.Component {
 				</Col>
 				</Row>
 				<Divider orientation="center" style={{ color: '#333', fontWeight: 'bold',marginTop:'50px' }}>
-     			<h1> About Us </h1>
+     			<h4> About Us </h4>
    			</Divider>
 				<Row style={styles.root}>
 				<Col span={7} offset = {1}>
@@ -75,86 +76,9 @@ class Content extends React.Component {
 				</Col>
 				</Row>		
 				<Divider orientation="center" style={{ color: '#333', fontWeight: 'bold',marginTop:'50px' }}>
-     			<h1> Best Seller </h1>
+     			<h4> Best Seller </h4>
    			</Divider>	
-			   <Row>
-				   <Col span={5} offset = {1}>
-				   <Card
-    hoverable
-    style={{ width: 240 }}
-    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-  >
-    <Meta title="Europe Street beat" description="www.instagram.com" />
-  </Card>
-					</Col> 
-					<Col span={5} offset = {1}>
-				   <Card
-    hoverable
-    style={{ width: 240 }}
-    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-  >
-    <Meta title="Europe Street beat" description="www.instagram.com" />
-  </Card>
-					</Col>
-					<Col span={5} offset = {1}>
-				   <Card
-    hoverable
-    style={{ width: 240 }}
-    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-  >
-    <Meta title="Europe Street beat" description="www.instagram.com" />
-  </Card>
-					</Col>
-					<Col span={5} offset = {1}>
-				   <Card
-    hoverable
-    style={{ width: 240 }}
-    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-  >
-    <Meta title="Europe Street beat" description="www.instagram.com" />
-  </Card>
-					</Col>
-					
-				</Row>	
-				<Row style={{marginTop:'30px'}}>
-				   <Col span={5} offset = {1}>
-				   <Card
-    hoverable
-    style={{ width: 240 }}
-    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-  >
-    <Meta title="Europe Street beat" description="www.instagram.com" />
-  </Card>
-					</Col> 
-					<Col span={5} offset = {1}>
-				   <Card
-    hoverable
-    style={{ width: 240 }}
-    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-  >
-    <Meta title="Europe Street beat" description="www.instagram.com" />
-  </Card>
-					</Col>
-					<Col span={5} offset = {1}>
-				   <Card
-    hoverable
-    style={{ width: 240 }}
-    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-  >
-    <Meta title="Europe Street beat" description="www.instagram.com" />
-  </Card>
-					</Col>
-					<Col span={5} offset = {1}>
-				   <Card
-    hoverable
-    style={{ width: 240 }}
-    cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-  >
-    <Meta title="Europe Street beat" description="www.instagram.com" />
-  </Card>
-					</Col>
-					
-				</Row> 	
+			   <ProductList />
           </div>
        );
     }
